@@ -33,13 +33,13 @@ const courses = [
 
 const FeaturedCourses = () => {
   return (
-    <section className="section bg-white">
+    <section className="section bg-background">
       <div className="container max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Featured Courses
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-foreground/80 max-w-2xl mx-auto">
             Discover our most popular courses designed to help you acquire in-demand skills and advance your career.
           </p>
         </div>
@@ -48,7 +48,7 @@ const FeaturedCourses = () => {
           {courses.map((course, index) => (
             <Card 
               key={course.id}
-              className="border border-gray-200 overflow-hidden hover-scale"
+              className="border border-primary/20 overflow-hidden hover-scale"
             >
               <div className="h-48 overflow-hidden">
                 <img
@@ -61,7 +61,7 @@ const FeaturedCourses = () => {
                 <CardTitle>{course.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-4">{course.description}</p>
+                <p className="text-foreground/80 mb-4">{course.description}</p>
                 <div className="flex justify-between text-sm">
                   <span className="font-medium">{course.price}</span>
                   <span>{course.duration}</span>
@@ -69,7 +69,7 @@ const FeaturedCourses = () => {
               </CardContent>
               <CardFooter>
                 <Button
-                  className="w-full bg-black text-white hover:bg-gray-800"
+                  className="w-full bg-primary text-foreground hover:bg-accent"
                   asChild
                 >
                   <Link to={`/course/${course.id}`}>View Course</Link>
@@ -83,7 +83,7 @@ const FeaturedCourses = () => {
           <Button
             size="lg"
             variant="outline"
-            className="border-black text-black hover:bg-gray-100"
+            className="border-primary text-foreground hover:bg-primary/10"
             asChild
           >
             <Link to="/courses">View All Courses</Link>

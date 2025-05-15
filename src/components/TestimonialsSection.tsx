@@ -50,33 +50,33 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="section bg-gray-50">
+    <section className="section bg-primary/10">
       <div className="container max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             What Our Students Say
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-foreground/80 max-w-2xl mx-auto">
             Hear from our students who have transformed their careers with our courses.
           </p>
         </div>
         
         <div className="relative max-w-4xl mx-auto">
-          <Card className="border border-gray-200 px-6 py-8 md:px-12 md:py-10 animate-fade-in">
+          <Card className="border border-primary/20 px-6 py-8 md:px-12 md:py-10 animate-fade-in">
             <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 rounded-full overflow-hidden mb-6 border-2 border-black">
+              <div className="w-20 h-20 rounded-full overflow-hidden mb-6 border-2 border-primary">
                 <img
                   src={testimonials[activeIndex].image}
                   alt={testimonials[activeIndex].name}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className="text-lg md:text-xl text-gray-700 mb-6 italic">
+              <p className="text-lg md:text-xl text-foreground/80 mb-6 italic">
                 "{testimonials[activeIndex].text}"
               </p>
               <div>
-                <h4 className="font-bold text-black">{testimonials[activeIndex].name}</h4>
-                <p className="text-gray-600">{testimonials[activeIndex].role}</p>
+                <h4 className="font-bold text-foreground">{testimonials[activeIndex].name}</h4>
+                <p className="text-foreground/70">{testimonials[activeIndex].role}</p>
               </div>
             </div>
           </Card>
@@ -84,14 +84,14 @@ const TestimonialsSection = () => {
           <div className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 flex justify-between">
             <button 
               onClick={prevTestimonial} 
-              className="bg-white text-black p-2 rounded-full shadow-md hover:bg-gray-100 focus:outline-none"
+              className="bg-primary text-foreground p-2 rounded-full shadow-md hover:bg-accent focus:outline-none"
               aria-label="Previous testimonial"
             >
               <ArrowLeft size={20} />
             </button>
             <button 
               onClick={nextTestimonial} 
-              className="bg-white text-black p-2 rounded-full shadow-md hover:bg-gray-100 focus:outline-none"
+              className="bg-primary text-foreground p-2 rounded-full shadow-md hover:bg-accent focus:outline-none"
               aria-label="Next testimonial"
             >
               <ArrowRight size={20} />
@@ -104,7 +104,7 @@ const TestimonialsSection = () => {
                 key={index}
                 onClick={() => setActiveIndex(index)}
                 className={`w-3 h-3 rounded-full ${
-                  index === activeIndex ? "bg-black" : "bg-gray-300"
+                  index === activeIndex ? "bg-primary" : "bg-primary/30"
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
