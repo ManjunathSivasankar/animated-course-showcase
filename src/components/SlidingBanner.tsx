@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { 
@@ -39,21 +39,21 @@ const SlidingBanner = () => {
           {slides.map((slide) => (
             <CarouselItem key={slide.id}>
               <div 
-                className="hero-slide"
+                className="hero-slide smooth-transition"
                 style={{ backgroundImage: `url(${slide.image})` }}
               >
                 <div className="hero-slide-content">
-                  <div className="container max-w-7xl mx-auto text-white">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in">
+                  <div className="container max-w-7xl mx-auto text-offwhite">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-smooth-fade-in">
                       {slide.title}
                     </h1>
-                    <p className="text-lg md:text-xl mb-8 max-w-2xl animate-fade-in">
+                    <p className="text-lg md:text-xl mb-8 max-w-2xl animate-smooth-fade-in" style={{animationDelay: "0.3s"}}>
                       {slide.subtitle}
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 animate-fade-in">
+                    <div className="flex flex-col sm:flex-row gap-4 animate-smooth-fade-in" style={{animationDelay: "0.6s"}}>
                       <Button
                         size="lg"
-                        className="bg-primary text-black hover:bg-accent px-8 py-6"
+                        className="bg-gold text-charcoal hover:bg-gold-dark smooth-transition px-8 py-6"
                         asChild
                       >
                         <Link to="/courses">Explore Courses</Link>
@@ -61,7 +61,7 @@ const SlidingBanner = () => {
                       <Button
                         size="lg"
                         variant="outline"
-                        className="border-white text-white hover:bg-white hover:text-black px-8 py-6"
+                        className="border-offwhite text-offwhite hover:bg-offwhite hover:text-charcoal smooth-transition px-8 py-6"
                         asChild
                       >
                         <Link to="/contact">Contact Us</Link>
@@ -74,10 +74,10 @@ const SlidingBanner = () => {
           ))}
         </CarouselContent>
         <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
-          <CarouselPrevious className="bg-white/70 hover:bg-white" />
+          <CarouselPrevious className="bg-gold/70 hover:bg-gold text-charcoal smooth-transition" />
         </div>
         <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
-          <CarouselNext className="bg-white/70 hover:bg-white" />
+          <CarouselNext className="bg-gold/70 hover:bg-gold text-charcoal smooth-transition" />
         </div>
       </Carousel>
     </section>
