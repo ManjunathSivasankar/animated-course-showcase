@@ -62,8 +62,8 @@ const Navbar = () => {
           >
             Contact
           </Link>
-          <Button className="bg-black text-white hover:bg-gray-800">
-            Enroll Now
+          <Button className="bg-black text-white hover:bg-gray-800" asChild>
+            <Link to="/contact">Enroll Now</Link>
           </Button>
         </nav>
 
@@ -92,8 +92,12 @@ const Navbar = () => {
               >
                 Contact
               </Link>
-              <Button className="mt-4 bg-black text-white hover:bg-gray-800">
-                Enroll Now
+              <Button 
+                className="mt-4 bg-black text-white hover:bg-gray-800"
+                asChild
+                onClick={() => setIsOpen(false)}
+              >
+                <Link to="/contact">Enroll Now</Link>
               </Button>
             </nav>
           </div>

@@ -189,9 +189,9 @@ const CourseDetailPage = () => {
                   <Button
                     size="lg"
                     className="bg-black text-white hover:bg-gray-800"
-                    onClick={() => window.location.href = "/contact"}
+                    asChild
                   >
-                    Enroll Now
+                    <Link to="/contact">Enroll Now</Link>
                   </Button>
                   <Button
                     size="lg"
