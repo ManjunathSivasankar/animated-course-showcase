@@ -33,7 +33,7 @@ const ContactPage = () => {
     setLoading(true);
     
     // Format phone number for WhatsApp
-    const phone = "+1234567890"; // Replace with your actual WhatsApp number
+    const phone = "+91 9345974814"; // Replace with your actual WhatsApp number
     const text = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`
     );

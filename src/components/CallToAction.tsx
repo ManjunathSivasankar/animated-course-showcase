@@ -24,11 +24,10 @@ const CallToAction = () => {
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white/10"
+              className="bg-white text-black hover:bg-gray-200"
               asChild
             >
-              <Link to="/contact">Contact Us</Link>
+              <Link to="/contact">Enroll now</Link>
             </Button>
           </div>
         </div>
