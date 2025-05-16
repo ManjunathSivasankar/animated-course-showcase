@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import { 
   Carousel,
   CarouselContent,
-  CarouselItem
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext
 } from "@/components/ui/carousel";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -108,8 +110,12 @@ const SlidingBanner = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        
-        {/* Slide indicators at the bottom - removed */}
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
+          <CarouselPrevious className="bg-gold/70 hover:bg-blue text-white smooth-transition" />
+        </div>
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
+          <CarouselNext className="bg-gold/70 hover:bg-blue text-white smooth-transition" />
+        </div>
       </Carousel>
     </section>
   );
