@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-transparent py-5">
+    <header className="fixed top-0 left-0 w-full z-50 bg-white py-5 shadow-sm">
       <div className="container max-w-7xl mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold text-foreground">
           EduHub
@@ -51,7 +51,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="absolute top-full left-0 w-full bg-background shadow-lg border-t border-blue-light lg:hidden animate-smooth-fade-in">
+          <div className="absolute top-full left-0 w-full bg-white shadow-lg border-t border-blue-light lg:hidden animate-smooth-fade-in">
             <nav className="flex flex-col py-4 px-4">
               <Link
                 to="/"
