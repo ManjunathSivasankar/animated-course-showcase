@@ -1,34 +1,13 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
-        isScrolled ? "bg-background shadow-md py-3 border-b border-blue-light" : "bg-transparent py-5"
-      }`}
-    >
+    <header className="fixed top-0 left-0 w-full z-50 bg-transparent py-5">
       <div className="container max-w-7xl mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold text-foreground">
           EduHub
@@ -68,9 +47,6 @@ const Navbar = () => {
           >
             Contact
           </Link>
-          <Button className="bg-gold text-charcoal hover:bg-blue hover:text-white smooth-transition" asChild>
-            <Link to="/contact">Enroll Now</Link>
-          </Button>
         </nav>
 
         {/* Mobile Navigation */}
@@ -105,13 +81,6 @@ const Navbar = () => {
               >
                 Contact
               </Link>
-              <Button 
-                className="mt-4 bg-gold text-charcoal hover:bg-blue hover:text-white smooth-transition"
-                asChild
-                onClick={() => setIsOpen(false)}
-              >
-                <Link to="/contact">Enroll Now</Link>
-              </Button>
             </nav>
           </div>
         )}
