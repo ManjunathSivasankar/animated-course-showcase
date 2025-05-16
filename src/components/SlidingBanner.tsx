@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { 
@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
   CarouselNext
 } from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
 
 const slides = [
   {
@@ -32,9 +33,45 @@ const slides = [
 ];
 
 const SlidingBanner = () => {
+  const [api, setApi] = useState<any>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto-slide functionality
+  const autoPlay = useCallback(() => {
+    if (api) {
+      api.scrollNext();
+    }
+  }, [api]);
+
+  useEffect(() => {
+    const autoPlayInterval = setInterval(autoPlay, 5000); // Auto slide every 5 seconds
+    
+    return () => {
+      clearInterval(autoPlayInterval);
+    };
+  }, [api, autoPlay]);
+
+  // Track current slide
+  const onSelect = useCallback(() => {
+    if (api) {
+      setCurrentSlide(api.selectedScrollSnap());
+    }
+  }, [api]);
+
+  useEffect(() => {
+    if (!api) return;
+    
+    onSelect();
+    api.on('select', onSelect);
+    
+    return () => {
+      api.off('select', onSelect);
+    };
+  }, [api, onSelect]);
+
   return (
     <section className="relative w-full">
-      <Carousel className="w-full">
+      <Carousel className="w-full" setApi={setApi}>
         <CarouselContent>
           {slides.map((slide) => (
             <CarouselItem key={slide.id}>
@@ -53,7 +90,7 @@ const SlidingBanner = () => {
                     <div className="flex flex-col sm:flex-row gap-4 animate-smooth-fade-in" style={{animationDelay: "0.6s"}}>
                       <Button
                         size="lg"
-                        className="bg-gold text-charcoal hover:bg-gold-dark smooth-transition px-8 py-6"
+                        className="bg-gold text-charcoal hover:bg-blue hover:text-white smooth-transition px-8 py-6"
                         asChild
                       >
                         <Link to="/courses">Explore Courses</Link>
@@ -61,7 +98,7 @@ const SlidingBanner = () => {
                       <Button
                         size="lg"
                         variant="outline"
-                        className="border-offwhite text-offwhite hover:bg-offwhite hover:text-charcoal smooth-transition px-8 py-6"
+                        className="border-offwhite text-offwhite hover:bg-blue hover:text-white hover:border-blue smooth-transition px-8 py-6"
                         asChild
                       >
                         <Link to="/contact">Contact Us</Link>
@@ -74,10 +111,26 @@ const SlidingBanner = () => {
           ))}
         </CarouselContent>
         <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
-          <CarouselPrevious className="bg-gold/70 hover:bg-gold text-charcoal smooth-transition" />
+          <CarouselPrevious className="bg-gold/70 hover:bg-blue text-white smooth-transition" />
         </div>
         <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
-          <CarouselNext className="bg-gold/70 hover:bg-gold text-charcoal smooth-transition" />
+          <CarouselNext className="bg-gold/70 hover:bg-blue text-white smooth-transition" />
+        </div>
+        
+        {/* Slide indicators */}
+        <div className="absolute bottom-5 left-0 right-0">
+          <div className="flex justify-center gap-2">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  currentSlide === index ? "bg-blue" : "bg-white/50 hover:bg-white"
+                }`}
+                onClick={() => api?.scrollTo(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </Carousel>
     </section>

@@ -28,6 +28,11 @@
     --accent: 38 68% 50%;
     --accent-foreground: 220 13% 14%;
 
+    /* New blue color values */
+    --blue: 210 100% 50%;
+    --blue-hover: 210 100% 40%;
+    --blue-light: 210 100% 85%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
@@ -64,8 +69,9 @@
     @apply transition-transform duration-300 hover:scale-105;
   }
 
+  /* Updated underline animation with blue color */
   .underline-animation {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full;
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-blue after:transition-all after:duration-300 hover:after:w-full;
   }
 
   .section {
@@ -107,5 +113,18 @@
 
   .gold-gradient {
     background: linear-gradient(135deg, #E0AC52, #F5D6A8);
+  }
+
+  /* New blue hover classes */
+  .blue-hover {
+    @apply hover:text-blue transition-colors duration-300;
+  }
+
+  .blue-border {
+    @apply border-blue;
+  }
+
+  .blue-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue focus:border-blue;
   }
 }

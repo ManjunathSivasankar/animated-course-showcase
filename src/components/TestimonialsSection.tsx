@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const testimonials = [
+// Written testimonials
+const writtenTestimonials = [
   {
     id: 1,
     name: "Emma Johnson",
@@ -34,18 +36,56 @@ const testimonials = [
   }
 ];
 
+// Video testimonials
+const videoTestimonials = [
+  {
+    id: 1,
+    name: "David Parker",
+    role: "Data Scientist",
+    videoUrl: "https://www.youtube.com/embed/EngW7tLk6R8",
+    thumbnail: "https://img.youtube.com/vi/EngW7tLk6R8/hqdefault.jpg"
+  },
+  {
+    id: 2,
+    name: "Jessica Chen",
+    role: "UX Designer",
+    videoUrl: "https://www.youtube.com/embed/vLAOQh4d9lI",
+    thumbnail: "https://img.youtube.com/vi/vLAOQh4d9lI/hqdefault.jpg"
+  },
+  {
+    id: 3,
+    name: "Robert Kim",
+    role: "Software Engineer",
+    videoUrl: "https://www.youtube.com/embed/0kd6SYBATrU",
+    thumbnail: "https://img.youtube.com/vi/0kd6SYBATrU/hqdefault.jpg"
+  }
+];
+
 const TestimonialsSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeWrittenIndex, setActiveWrittenIndex] = useState(0);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   
-  const nextTestimonial = () => {
-    setActiveIndex((prevIndex) => 
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+  const nextWrittenTestimonial = () => {
+    setActiveWrittenIndex((prevIndex) => 
+      prevIndex === writtenTestimonials.length - 1 ? 0 : prevIndex + 1
     );
   };
   
-  const prevTestimonial = () => {
-    setActiveIndex((prevIndex) => 
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+  const prevWrittenTestimonial = () => {
+    setActiveWrittenIndex((prevIndex) => 
+      prevIndex === 0 ? writtenTestimonials.length - 1 : prevIndex - 1
+    );
+  };
+
+  const nextVideoTestimonial = () => {
+    setActiveVideoIndex((prevIndex) => 
+      prevIndex === videoTestimonials.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+  
+  const prevVideoTestimonial = () => {
+    setActiveVideoIndex((prevIndex) => 
+      prevIndex === 0 ? videoTestimonials.length - 1 : prevIndex - 1
     );
   };
 
@@ -61,56 +101,129 @@ const TestimonialsSection = () => {
           </p>
         </div>
         
-        <div className="relative max-w-4xl mx-auto">
-          <Card className="border border-primary/20 px-6 py-8 md:px-12 md:py-10 animate-fade-in">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 rounded-full overflow-hidden mb-6 border-2 border-primary">
-                <img
-                  src={testimonials[activeIndex].image}
-                  alt={testimonials[activeIndex].name}
-                  className="w-full h-full object-cover"
-                />
+        <Tabs defaultValue="written" className="max-w-4xl mx-auto">
+          <TabsList className="grid w-full grid-cols-2 mb-8 border border-blue-light rounded-lg">
+            <TabsTrigger 
+              value="written"
+              className="data-[state=active]:bg-blue data-[state=active]:text-white"
+            >
+              Written Reviews
+            </TabsTrigger>
+            <TabsTrigger 
+              value="video"
+              className="data-[state=active]:bg-blue data-[state=active]:text-white"
+            >
+              Video Testimonials
+            </TabsTrigger>
+          </TabsList>
+          
+          {/* Written Testimonials */}
+          <TabsContent value="written">
+            <div className="relative">
+              <Card className="border border-blue-light px-6 py-8 md:px-12 md:py-10 animate-fade-in">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-20 h-20 rounded-full overflow-hidden mb-6 border-2 border-blue">
+                    <img
+                      src={writtenTestimonials[activeWrittenIndex].image}
+                      alt={writtenTestimonials[activeWrittenIndex].name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-lg md:text-xl text-foreground/80 mb-6 italic">
+                    "{writtenTestimonials[activeWrittenIndex].text}"
+                  </p>
+                  <div>
+                    <h4 className="font-bold text-foreground">{writtenTestimonials[activeWrittenIndex].name}</h4>
+                    <p className="text-foreground/70">{writtenTestimonials[activeWrittenIndex].role}</p>
+                  </div>
+                </div>
+              </Card>
+              
+              <div className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 flex justify-between">
+                <button 
+                  onClick={prevWrittenTestimonial} 
+                  className="bg-blue text-white p-2 rounded-full shadow-md hover:bg-blue-hover focus:outline-none transition-colors"
+                  aria-label="Previous testimonial"
+                >
+                  <ArrowLeft size={20} />
+                </button>
+                <button 
+                  onClick={nextWrittenTestimonial} 
+                  className="bg-blue text-white p-2 rounded-full shadow-md hover:bg-blue-hover focus:outline-none transition-colors"
+                  aria-label="Next testimonial"
+                >
+                  <ArrowRight size={20} />
+                </button>
               </div>
-              <p className="text-lg md:text-xl text-foreground/80 mb-6 italic">
-                "{testimonials[activeIndex].text}"
-              </p>
-              <div>
-                <h4 className="font-bold text-foreground">{testimonials[activeIndex].name}</h4>
-                <p className="text-foreground/70">{testimonials[activeIndex].role}</p>
+              
+              <div className="flex justify-center mt-8 space-x-2">
+                {writtenTestimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveWrittenIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      index === activeWrittenIndex ? "bg-blue" : "bg-blue/30"
+                    }`}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
-          </Card>
+          </TabsContent>
           
-          <div className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 flex justify-between">
-            <button 
-              onClick={prevTestimonial} 
-              className="bg-primary text-foreground p-2 rounded-full shadow-md hover:bg-accent focus:outline-none"
-              aria-label="Previous testimonial"
-            >
-              <ArrowLeft size={20} />
-            </button>
-            <button 
-              onClick={nextTestimonial} 
-              className="bg-primary text-foreground p-2 rounded-full shadow-md hover:bg-accent focus:outline-none"
-              aria-label="Next testimonial"
-            >
-              <ArrowRight size={20} />
-            </button>
-          </div>
-          
-          <div className="flex justify-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`w-3 h-3 rounded-full ${
-                  index === activeIndex ? "bg-primary" : "bg-primary/30"
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
+          {/* Video Testimonials */}
+          <TabsContent value="video">
+            <div className="relative">
+              <Card className="border border-blue-light px-6 py-8 md:px-12 md:py-10 animate-fade-in">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-full aspect-video mb-6 rounded-lg overflow-hidden border-2 border-blue">
+                    <iframe
+                      src={videoTestimonials[activeVideoIndex].videoUrl}
+                      title={`Testimonial from ${videoTestimonials[activeVideoIndex].name}`}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <div className="mt-4">
+                    <h4 className="font-bold text-foreground">{videoTestimonials[activeVideoIndex].name}</h4>
+                    <p className="text-foreground/70">{videoTestimonials[activeVideoIndex].role}</p>
+                  </div>
+                </div>
+              </Card>
+              
+              <div className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 flex justify-between">
+                <button 
+                  onClick={prevVideoTestimonial} 
+                  className="bg-blue text-white p-2 rounded-full shadow-md hover:bg-blue-hover focus:outline-none transition-colors"
+                  aria-label="Previous video testimonial"
+                >
+                  <ArrowLeft size={20} />
+                </button>
+                <button 
+                  onClick={nextVideoTestimonial} 
+                  className="bg-blue text-white p-2 rounded-full shadow-md hover:bg-blue-hover focus:outline-none transition-colors"
+                  aria-label="Next video testimonial"
+                >
+                  <ArrowRight size={20} />
+                </button>
+              </div>
+              
+              <div className="flex justify-center mt-8 space-x-2">
+                {videoTestimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveVideoIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      index === activeVideoIndex ? "bg-blue" : "bg-blue/30"
+                    }`}
+                    aria-label={`Go to video testimonial ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );

@@ -68,7 +68,12 @@ export default {
 					light: '#F5D6A8',
 					dark: '#C4963E'
 				},
-				offwhite: '#EEEEEE'
+				offwhite: '#EEEEEE',
+				blue: {
+					DEFAULT: 'hsl(var(--blue))',
+					hover: 'hsl(var(--blue-hover))',
+					light: 'hsl(var(--blue-light))'
+				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

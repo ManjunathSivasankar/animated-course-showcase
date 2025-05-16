@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
-        isScrolled ? "bg-background shadow-md py-3" : "bg-transparent py-5"
+        isScrolled ? "bg-background shadow-md py-3 border-b border-blue-light" : "bg-transparent py-5"
       }`}
     >
       <div className="container max-w-7xl mx-auto px-4 flex justify-between items-center">
@@ -36,7 +36,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden text-foreground"
+          className="lg:hidden text-foreground hover:text-blue"
           onClick={() => setIsOpen(!isOpen)}
         >
           <Menu size={24} />
@@ -46,67 +46,67 @@ const Navbar = () => {
         <nav className="hidden lg:flex items-center space-x-8">
           <Link
             to="/"
-            className="text-foreground font-medium hover:text-accent underline-animation smooth-transition"
+            className="text-foreground font-medium hover:text-blue underline-animation smooth-transition"
           >
             Home
           </Link>
           <Link
             to="/about"
-            className="text-foreground font-medium hover:text-accent underline-animation smooth-transition"
+            className="text-foreground font-medium hover:text-blue underline-animation smooth-transition"
           >
             About
           </Link>
           <Link
             to="/courses"
-            className="text-foreground font-medium hover:text-accent underline-animation smooth-transition"
+            className="text-foreground font-medium hover:text-blue underline-animation smooth-transition"
           >
             Courses
           </Link>
           <Link
             to="/contact"
-            className="text-foreground font-medium hover:text-accent underline-animation smooth-transition"
+            className="text-foreground font-medium hover:text-blue underline-animation smooth-transition"
           >
             Contact
           </Link>
-          <Button className="bg-gold text-charcoal hover:bg-gold-dark smooth-transition" asChild>
+          <Button className="bg-gold text-charcoal hover:bg-blue hover:text-white smooth-transition" asChild>
             <Link to="/contact">Enroll Now</Link>
           </Button>
         </nav>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="absolute top-full left-0 w-full bg-background shadow-lg lg:hidden animate-smooth-fade-in">
+          <div className="absolute top-full left-0 w-full bg-background shadow-lg border-t border-blue-light lg:hidden animate-smooth-fade-in">
             <nav className="flex flex-col py-4 px-4">
               <Link
                 to="/"
                 onClick={() => setIsOpen(false)}
-                className="py-3 text-foreground font-medium hover:text-accent border-b border-gold/20 smooth-transition"
+                className="py-3 text-foreground font-medium hover:text-blue border-b border-gold/20 smooth-transition"
               >
                 Home
               </Link>
               <Link
                 to="/about"
                 onClick={() => setIsOpen(false)}
-                className="py-3 text-foreground font-medium hover:text-accent border-b border-gold/20 smooth-transition"
+                className="py-3 text-foreground font-medium hover:text-blue border-b border-gold/20 smooth-transition"
               >
                 About
               </Link>
               <Link
                 to="/courses"
                 onClick={() => setIsOpen(false)}
-                className="py-3 text-foreground font-medium hover:text-accent border-b border-gold/20 smooth-transition"
+                className="py-3 text-foreground font-medium hover:text-blue border-b border-gold/20 smooth-transition"
               >
                 Courses
               </Link>
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="py-3 text-foreground font-medium hover:text-accent border-b border-gold/20 smooth-transition"
+                className="py-3 text-foreground font-medium hover:text-blue border-b border-gold/20 smooth-transition"
               >
                 Contact
               </Link>
               <Button 
-                className="mt-4 bg-gold text-charcoal hover:bg-gold-dark smooth-transition"
+                className="mt-4 bg-gold text-charcoal hover:bg-blue hover:text-white smooth-transition"
                 asChild
                 onClick={() => setIsOpen(false)}
               >
